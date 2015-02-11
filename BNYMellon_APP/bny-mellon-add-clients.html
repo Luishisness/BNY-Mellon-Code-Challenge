@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="BNYMellon">
+
+<head>
+	
+	<title>BNY Mellon CRUD APP</title>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>BNY Mellon CRUD APP</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+	
+
+
+
+</head>
+
+ <body ng-controller="mainCtrl">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">{{appTitle}}</div>
+    </nav>
+	
+	<!--begin container-->
+    Begin page content 
+    <div class="container">
+
+		<div class="page-header">
+     		<h1>{{addClientstitle}}</h1>
+   	  	</div>
+		
+	<div ng-controller="addFormcontroller">	
+	    <form name"addForm" class="css-clientform"  novalidate >
+	      Name: <input type="text" ng-model="user.name" required/><br />
+					
+	      Description: <input type="text" ng-model="user.description" required/><br />
+		  
+		  Type: <input type="radio" ng-model="user.type" value="TRADING" required/>Trading
+		        <input type="radio" ng-model="user.type" value="IA" required/>IA<br />
+				
+		  Default: <input type="checkbox" ng-model="user.isDefault" 
+		  					ng-true-value="'Y'" ng-false-value="'N'"> <br/>
+		  	
+	      <input type="button" ng-click="reset()" value="cancel" />
+		  
+	      <input type="submit" ng-click="update(user)" value="create"/>
+					
+		  <div>addForm is {{addForm.$valid}}</div>
+	    </form>
+	    <pre>form = {{user | json}}</pre>
+	    <pre>master = {{master | json}}</pre>
+	
+	</div>		
+	
+   <div class="btn-group" role="group">
+     <button type="button" class="btn btn-default"><a href="index.html" target="_blank">Return to client list</a></button>
+   </div>
+	
+	
+      
+    </div>
+    <!--end container-->
+	
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">BNY Mellon Prototype 2015</p>
+      </div>
+    </footer>
+
+
+    <!-- core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/angular.min.js"></script>
+	<script src="app/bny-mellon-app.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+
+</html>

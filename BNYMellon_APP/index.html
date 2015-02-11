@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html ng-app="BNYMellon">
+
+<head>
+	
+	<title>BNY Mellon CRUD APP</title>
+	
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>BNY Mellon CRUD APP</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+
+
+</head>
+
+ <body ng-controller="mainCtrl">
+
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">{{appTitle}}</div>
+    </nav>
+	
+	<!--begin container-->
+    Begin page content 
+    <div class="container">
+
+		<div class="page-header">
+     		<h1>{{indexTitle}}</h1>
+   	  	</div>
+
+    
+    <form name"addForm" class="css-clientform"  novalidate >
+      Name: <input type="text" ng-model="newClient.name" required/>
+				
+      Description: <input type="text" ng-model="newClient.description" required/>
+	  
+	  Type: <input type="radio" ng-model="newClient.type" value="TRADING" required/>Trading
+	        <input type="radio" ng-model="newClient.type" value="IA" required/>IA
+			
+	  Default: <input type="checkbox" ng-model="newClient.isDefault" 
+	  					ng-true-value="'Y'" ng-false-value="'N'"> 
+	  	
+      <input type="button" ng-click="newReset()" value="cancel" />
+	  
+      <input type="submit" ng-click="confirm(newClient)" value="create"/>
+
+    </form>
+
+			
+ 
+	   	   
+
+ 	   <div>
+ 		  
+ 		    <table class="table table-hover">
+ 		      <tr>
+
+ 		        <th><a href="" ng-click="reverse=!reverse;order('id',reverse)">ID</th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Name</th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('description',reverse)">Description</a></th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('type',reverse)">Type</a></th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('isDefault',reverse)">Default</a></th>
+				<th>ADMIN</th>
+				
+ 		      </tr>
+			  
+		   
+ 		      <tr ng-repeat="client in clientsTable">
+				 
+ 		        <td>
+					<div ng-hide="editingData[client.id]">{{client.id}}</div>
+				    <!--<div ng-show="editingData[clients.id]"><input type="text" ng-model="clients.id" /></div>-->
+				</td>
+ 		        <td>
+					<div ng-hide="editingData[client.id]">{{client.name}}</div>
+			   	 	<div ng-show="editingData[client.id]"><input type="text" ng-model="client.name" /></div>
+				</td>
+ 		        <td>
+					<div ng-hide="editingData[client.id]">{{client.description}}</div>
+				    <div ng-show="editingData[client.id]"><input type="text" ng-model="client.description" /></div>
+				</td>
+				<td>
+					<div ng-hide="editingData[client.id]">{{client.type}}</div>
+				    <div ng-show="editingData[client.id]"><input type="text" ng-model="client.type" /></div>
+				</td>
+				<td>
+					<div ng-hide="editingData[client.id]">{{client.isDefault}}</div>
+				    <div ng-show="editingData[client.id]"><input type="checkbox" ng-model="client.isDefault" ng-true-value="'Y'" 																				 					ng-false-value="'N'"/></div>
+					
+					
+				</td>
+				
+				
+                <td>
+                    <button ng-hide="editingData[client.id]" ng-click="modify(client)">Edit</button>
+					<button ng-show="editingData[client.id]" ng-click="">Cancel</button>
+                    <button ng-show="editingData[client.id]" ng-click="update(client)">Update</button>
+                    <button ng-show="editingData[client.id]" ng-click="delete(client)">Delete</button>
+                </td>
+				
+
+ 		      </tr>
+			  
+			<!--  <tr ng-repeat="rowContent in rows"><td>{{rowContent}}</td></tr>-->
+
+			  
+ 		    </table>
+			
+
+			
+			
+
+ 		</div>
+		
+  
+    </div>
+    <!--end container-->
+	
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">BNY Mellon Prototype 2015</p>
+      </div>
+    </footer>
+
+
+    <!-- core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/angular.min.js"></script>
+	<script src="app/bny-mellon-app.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+
+
+</html>

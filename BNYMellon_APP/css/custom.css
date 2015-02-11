@@ -1,0 +1,14 @@
+  .css-clientform input.ng-invalid.ng-touched {
+    background-color: #FA787E;
+  }
+
+  .css-clientform input.ng-valid.ng-touched {
+    background-color: #78FA89;
+  }
+  
+  .btn-group{
+  	
+	  float:right;
+	  padding: 50px;
+	 
+  }
