@@ -8,7 +8,7 @@
   app.controller('mainCtrl', ['$scope', '$filter', function($scope, $filter) {
 	  
   	$scope.appTitle='Shawn Vega BNY Mellon Client App::BNY Mellon Clients App';
-  	$scope.indexTitle='Welcom to BNY Mellon client portfolio';
+  	$scope.indexTitle='Welcom to BNY Mellon Client Portfolio';
   	$scope.addClientstitle='add a new client';
   	$scope.editClientsTitle='edit an existing client';
 	
@@ -188,6 +188,14 @@
 	
 	
 	//Begin Editing table data Portion 
+	
+  /*  $scope.editOptions = [
+      { label: 'one', value: 1 },
+      { label: 'two', value: 2 }
+    ];
+	
+	$scope.editSelected = $scope.options[1];*/
+	
     $scope.editingData = [];
     
     for (var i = 0, length = $scope.clientsTable.length; i < length; i++) {
@@ -210,31 +218,45 @@
     };
 	   
 	//Begin Add new Users Section
+	
+		
+	   $scope.newClientname="BK";
+	   $scope.newClientdescription="BNY Mellon";
+	
 
 		
        $scope.confirm = function(clientsTable){
-           $scope.editingData[clientsTable.id] = false;
-	 
+	
+		   //if(addForm.$valid){
+         //  $scope.editingData[clientsTable.id] = false;
+		 
+		 	//is default set to no unless user changes this value
+		    $scope.newClientisDefault="N";
 	 
             $scope.clientsTable.push({
              id: $scope.clientsTable.length+1,
-             name: $scope.newClient.name,
-   			 description: $scope.newClient.description,
-   			 type: $scope.newClient.type,
-   			 isDefault: $scope.newClient.isDefault
+             name: $scope.newClientname,
+   			 description: $scope.newClientdescription,
+   			 type: $scope.newClienttype,
+   			 isDefault: $scope.newClientisDefault
 		 
             });
 			
-			$scope.newClient.name="";
-   			 $scope.newClient.description="";
-   			 $scope.newClient.type="";
-   			 $scope.newClient.isDefault="";
+		    alert("You successfully added a new client");
+			
+			
+			 $scope.newClientname="";
+   			 $scope.newClientdescription="";
+   			 $scope.newClienttype="";
+   			 $scope.newClientisDefault="";
+
 		};
 
 	 $scope.master = {};
 
      $scope.newUpdate = function(newClient) {
        $scope.master = angular.copy(newClient);
+	   
 
 	   
      };

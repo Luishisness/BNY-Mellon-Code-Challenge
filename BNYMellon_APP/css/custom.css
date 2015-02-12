@@ -6,9 +6,20 @@
     background-color: #78FA89;
   }
   
-  .btn-group{
+  .search{
   	
 	  float:right;
-	  padding: 50px;
+	  padding: 0px;
 	 
+  }
+  
+  form{
+  	
+	  float:left;
+	  padding: 50px;
+  }
+  
+  label{
+  	
+	padding: 10px;
   }

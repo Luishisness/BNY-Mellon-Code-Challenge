@@ -39,30 +39,50 @@
      		<h1>{{indexTitle}}</h1>
    	  	</div>
 
-    
-    <form name"addForm" class="css-clientform"  novalidate >
-      Name: <input type="text" ng-model="newClient.name" required/>
-				
-      Description: <input type="text" ng-model="newClient.description" required/>
-	  
-	  Type: <input type="radio" ng-model="newClient.type" value="TRADING" required/>Trading
-	        <input type="radio" ng-model="newClient.type" value="IA" required/>IA
-			
-	  Default: <input type="checkbox" ng-model="newClient.isDefault" 
-	  					ng-true-value="'Y'" ng-false-value="'N'"> 
-	  	
-      <input type="button" ng-click="newReset()" value="cancel" />
-	  
-      <input type="submit" ng-click="confirm(newClient)" value="create"/>
+    <!--Begin Test-->
+	<form name="myForm" class="css-clientform" novalidate>
 
-    </form>
+	<label>Name:
+		<input type="text" name="newClientname" ng-model="newClientname" required>
+			<span style="color:red" ng-show="myForm.newClientname.$dirty && myForm.newClientname.$invalid">
+				<span ng-show="myForm.newClientname.$error.required">Name is required.</span>
+			</span>
+	</label>
 
-			
- 
-	   	   
+	<label>Description:
+		<input type="text" name="newClientdescription" ng-model="newClientdescription" required>
+			<span style="color:red" ng-show="myForm.newClientdescription.$dirty && myForm.newClientdescription.$invalid">
+				<span ng-show="myForm.newClientdescription.$error.required">Description is required.</span>
+			</span>
+	</label>
+	
+	<label>Type:
+		<input type="radio" ng-model="newClienttype" value="TRADING" required>Trading
+		<input type="radio" ng-model="newClienttype" value="IA" required>IA
+	</label>
+	
+	<label>Default:
+		<input type="checkbox" ng-model="newClientisDefault" ng-true-value="'Y'" ng-false-value="'N'" >
+	</label>
+	
+	<label>
+		<input type="button" ng-click="newReset()" value="cancel" />	
+	</label>
+		
+	<label>
+		<input type="submit" ng-click="confirm(newClient)" value="create"
+			ng-disabled="myForm.newClientname.$dirty && myForm.newClientname.$invalid ||  
+			myForm.newClientdescription.$dirty && myForm.newClientdescription.$invalid">
+	</label>
+
+	</form>
+	<!--End Test-->
+
+	
 
  	   <div>
- 		  
+
+ 		 <div class="search">Search: <input ng-model="search.$"> </div>
  		    <table class="table table-hover">
  		      <tr>
 
@@ -71,12 +91,12 @@
  		        <th><a href="" ng-click="reverse=!reverse;order('description',reverse)">Description</a></th>
  		        <th><a href="" ng-click="reverse=!reverse;order('type',reverse)">Type</a></th>
  		        <th><a href="" ng-click="reverse=!reverse;order('isDefault',reverse)">Default</a></th>
-				<th>ADMIN</th>
+				<th>Admin</th>
 				
  		      </tr>
 			  
 		   
- 		      <tr ng-repeat="client in clientsTable">
+ 		      <tr ng-repeat="client in clientsTable | filter:search:strict">
 				 
  		        <td>
 					<div ng-hide="editingData[client.id]">{{client.id}}</div>
@@ -98,27 +118,20 @@
 					<div ng-hide="editingData[client.id]">{{client.isDefault}}</div>
 				    <div ng-show="editingData[client.id]"><input type="checkbox" ng-model="client.isDefault" ng-true-value="'Y'" 																				 					ng-false-value="'N'"/></div>
 					
-					
 				</td>
 				
 				
                 <td>
                     <button ng-hide="editingData[client.id]" ng-click="modify(client)">Edit</button>
-					<button ng-show="editingData[client.id]" ng-click="">Cancel</button>
+					<button ng-show="editingData[client.id]" ng-click="cancelEdit()">Cancel</button>
                     <button ng-show="editingData[client.id]" ng-click="update(client)">Update</button>
                     <button ng-show="editingData[client.id]" ng-click="delete(client)">Delete</button>
                 </td>
 				
 
  		      </tr>
-			  
-			<!--  <tr ng-repeat="rowContent in rows"><td>{{rowContent}}</td></tr>-->
 
-			  
  		    </table>
-			
-
-			
 			
 
  		</div>
