@@ -1,5 +1,5 @@
 # BNY-Mellon-Code-Challenge
-MVC: AngularJS, HTML5, CSS, Framework:Bootstrap, OOJS, Unit Testing:Karma
+MVC: AngularJS, HTML5, CSS, Framework:Bootstrap, OOJS, Unit Testing:Karma(This feature is not included)
 
 UI sample application
 We are looking for a simple proof of HTML / CSS / JS skills in the form of a small CRUD application. You may use whatever JS libraries you are most comfortable with - we love anything MVC! Single page or multi are both ok, there is no “right” answer on this. 
