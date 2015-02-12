@@ -8,7 +8,7 @@
   app.controller('mainCtrl', ['$scope', '$filter', function($scope, $filter) {
 	  
   	$scope.appTitle='Shawn Vega BNY Mellon Client App';
-  	$scope.indexTitle='Welcom to BNY Mellon Client Portfolio';
+  	$scope.indexTitle='Welcome to BNY Mellon Client Portfolio';
   	$scope.addClientstitle='add a new client';
   	$scope.editClientsTitle='edit an existing client';
 	 
