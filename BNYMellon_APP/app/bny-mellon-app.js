@@ -7,13 +7,11 @@
   //next controller goes here
   app.controller('mainCtrl', ['$scope', '$filter', function($scope, $filter) {
 	  
-  	$scope.appTitle='Shawn Vega BNY Mellon Client App::BNY Mellon Clients App';
+  	$scope.appTitle='Shawn Vega BNY Mellon Client App';
   	$scope.indexTitle='Welcom to BNY Mellon Client Portfolio';
   	$scope.addClientstitle='add a new client';
   	$scope.editClientsTitle='edit an existing client';
-	
-	
-	  
+	 
     var orderBy = $filter('orderBy');
 	
 	$scope.clientsTable=[
@@ -188,13 +186,7 @@
 	
 	
 	//Begin Editing table data Portion 
-	
-  /*  $scope.editOptions = [
-      { label: 'one', value: 1 },
-      { label: 'two', value: 2 }
-    ];
-	
-	$scope.editSelected = $scope.options[1];*/
+
 	
     $scope.editingData = [];
     
@@ -212,66 +204,79 @@
         $scope.editingData[clientsTable.id] = false;
     };
 	
+
+	
     $scope.delete = function(clientsTable){
 	 	var index = $scope.clientsTable.indexOf(clientsTable)
 	    $scope.clientsTable.splice(index, 1); 
     };
+	
+    $scope.cancelEdit = function(clientsTable){
+ 	   $scope.editingData[clientsTable.id] = null;
+ 
+    };
+
 	   
 	//Begin Add new Users Section
 	
 		
-	   $scope.newClientname="BK";
-	   $scope.newClientdescription="BNY Mellon";
-	
+	$scope.newClientname="Enter a name";
+	$scope.newClientdescription="Enter a description";
+	$scope.newClienttype="TRADING";
 
 		
-       $scope.confirm = function(clientsTable){
+    $scope.confirm = function(clientsTable){
 	
-		   //if(addForm.$valid){
-         //  $scope.editingData[clientsTable.id] = false;
-		 
-		 	//is default set to no unless user changes this value
-		    $scope.newClientisDefault="N";
-	 
-            $scope.clientsTable.push({
+		//is default set to no unless user changes this value
+		$scope.newClientisDefault="N";
+	 	 
+		$scope.clientsTable.push({
              id: $scope.clientsTable.length+1,
              name: $scope.newClientname,
    			 description: $scope.newClientdescription,
    			 type: $scope.newClienttype,
    			 isDefault: $scope.newClientisDefault
 		 
-            });
+         });
 			
-		    alert("You successfully added a new client");
+		   
 			
-			
-			 $scope.newClientname="";
-   			 $scope.newClientdescription="";
-   			 $scope.newClienttype="";
-   			 $scope.newClientisDefault="";
+   	    $scope.newClientname="Enter a name";
+   	    $scope.newClientdescription="Enter a description";
+   	   	$scope.newClienttype="TRADING";
+	 			
+	    alert("You successfully added a new client");
 
-		};
+	};
 
-	 $scope.master = {};
 
-     $scope.newUpdate = function(newClient) {
-       $scope.master = angular.copy(newClient);
-	   
-
-	   
-     };
 	
      $scope.newReset = function() {
-       $scope.newClient = angular.copy($scope.master);
+		 
+  		$scope.newClientname="Enter a name";
+ 		$scope.newClientdescription="Enter a description";
+ 	   	$scope.newClienttype="TRADING";
+		$scope.newClientisDefault="";
 	   
      };
-	 
-	 $scope.newReset();
-	
-	
-    
+
   }]);
- 
- 
   
+  // Directives to help clean up index.html
+  //Directives aren't working 
+  app.directive('bnymellonaddClients', function() {
+    return {
+	  restrict: 'E',
+	
+      templateUrl: 'bny-mellon-add-clients.html'
+    };
+  });
+  
+  app.directive('bnymelloneditClients', function() {
+    return {
+	  restrict: 'E',
+      templateUrl: 'bny-mellon-edit-clients.html'
+    };
+  });
+
 })();

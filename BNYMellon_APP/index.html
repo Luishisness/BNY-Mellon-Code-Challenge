@@ -31,8 +31,8 @@
       <div class="container">{{appTitle}}</div>
     </nav>
 	
-	<!--begin container-->
-    Begin page content 
+	<!--begin container
+    Begin page content -->
     <div class="container">
 
 		<div class="page-header">
@@ -40,8 +40,11 @@
    	  	</div>
 
     <!--Begin Test-->
+	
 	<form name="myForm" class="css-clientform" novalidate>
-
+		<div >
+     		<h3>Add Client</h3>
+   	  	</div>
 	<label>Name:
 		<input type="text" name="newClientname" ng-model="newClientname" required>
 			<span style="color:red" ng-show="myForm.newClientname.$dirty && myForm.newClientname.$invalid">
@@ -57,8 +60,12 @@
 	</label>
 	
 	<label>Type:
-		<input type="radio" ng-model="newClienttype" value="TRADING" required>Trading
-		<input type="radio" ng-model="newClienttype" value="IA" required>IA
+		
+		<select ng-model="newClienttype">
+		  <option value="TRADING" value="TRADING">TRADING</option>
+		  <option value="IA" value="IA">IA</option>
+		</select>
+		
 	</label>
 	
 	<label>Default:
@@ -70,27 +77,27 @@
 	</label>
 		
 	<label>
-		<input type="submit" ng-click="confirm(newClient)" value="create"
+		<input type="submit" ng-click="confirm(myForm,newClient)" value="create"
 			ng-disabled="myForm.newClientname.$dirty && myForm.newClientname.$invalid ||  
 			myForm.newClientdescription.$dirty && myForm.newClientdescription.$invalid">
 	</label>
 
 	</form>
-	<!--End Test-->
 
-	
-
- 	   <div>
-
- 		 <div class="search">Search: <input ng-model="search.$"> </div>
- 		    <table class="table table-hover">
+ 	
+		<div class="table-responsive">
+				<div class="search">Search: <input ng-model="search.$"> </div>
+ 		    <table class="table table-hover" >
+				
+				<th>Clients<th>
+				
  		      <tr>
 
- 		        <th><a href="" ng-click="reverse=!reverse;order('id',reverse)">ID</th>
- 		        <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Name</th>
- 		        <th><a href="" ng-click="reverse=!reverse;order('description',reverse)">Description</a></th>
- 		        <th><a href="" ng-click="reverse=!reverse;order('type',reverse)">Type</a></th>
- 		        <th><a href="" ng-click="reverse=!reverse;order('isDefault',reverse)">Default</a></th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('id',reverse)">ID ^</a></th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('name', reverse)">Name ^</a></th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('description',reverse)">Description ^</a></th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('type',reverse)">Type ^</a></th>
+ 		        <th><a href="" ng-click="reverse=!reverse;order('isDefault',reverse)">Default ^</a></th>
 				<th>Admin</th>
 				
  		      </tr>
@@ -100,7 +107,7 @@
 				 
  		        <td>
 					<div ng-hide="editingData[client.id]">{{client.id}}</div>
-				    <!--<div ng-show="editingData[clients.id]"><input type="text" ng-model="clients.id" /></div>-->
+				    <!--<div ng-show="editingData[client.id]"><input type="number" ng-model="client.id" /></div>-->
 				</td>
  		        <td>
 					<div ng-hide="editingData[client.id]">{{client.name}}</div>
@@ -112,7 +119,10 @@
 				</td>
 				<td>
 					<div ng-hide="editingData[client.id]">{{client.type}}</div>
-				    <div ng-show="editingData[client.id]"><input type="text" ng-model="client.type" /></div>
+				    <div ng-show="editingData[client.id]">		<select ng-model="client.type">
+		  			  											<option value="TRADING" value="TRADING">TRADING</option>
+																<option value="IA" value="IA">IA</option>
+																</select></div>
 				</td>
 				<td>
 					<div ng-hide="editingData[client.id]">{{client.isDefault}}</div>
@@ -123,7 +133,7 @@
 				
                 <td>
                     <button ng-hide="editingData[client.id]" ng-click="modify(client)">Edit</button>
-					<button ng-show="editingData[client.id]" ng-click="cancelEdit()">Cancel</button>
+					<button ng-show="editingData[client.id]" ng-click="cancelEdit(client)">Cancel</button>
                     <button ng-show="editingData[client.id]" ng-click="update(client)">Update</button>
                     <button ng-show="editingData[client.id]" ng-click="delete(client)">Delete</button>
                 </td>
@@ -132,10 +142,7 @@
  		      </tr>
 
  		    </table>
-			
-
- 		</div>
-		
+		</div>
   
     </div>
     <!--end container-->

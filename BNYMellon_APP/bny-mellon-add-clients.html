@@ -1,92 +1,43 @@
-<!DOCTYPE html>
-<html ng-app="BNYMellon">
-
-<head>
-	
-	<title>BNY Mellon CRUD APP</title>
-	
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>BNY Mellon CRUD APP</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/sticky-footer-navbar.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-	
-
-
-
-</head>
-
- <body ng-controller="mainCtrl">
-
-    <!-- Fixed navbar -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">{{appTitle}}</div>
-    </nav>
-	
-	<!--begin container-->
-    Begin page content 
-    <div class="container">
-
-		<div class="page-header">
-     		<h1>{{addClientstitle}}</h1>
+	<form name="myForm" class="css-clientform" novalidate>
+		<div >
+     		<h3>Add Client</h3>
    	  	</div>
+	<label>Name:
+		<input type="text" name="newClientname" ng-model="newClientname" required>
+			<span style="color:red" ng-show="myForm.newClientname.$dirty && myForm.newClientname.$invalid">
+				<span ng-show="myForm.newClientname.$error.required">Name is required.</span>
+			</span>
+	</label>
+
+	<label>Description:
+		<input type="text" name="newClientdescription" ng-model="newClientdescription" required>
+			<span style="color:red" ng-show="myForm.newClientdescription.$dirty && myForm.newClientdescription.$invalid">
+				<span ng-show="myForm.newClientdescription.$error.required">Description is required.</span>
+			</span>
+	</label>
+	
+	<label>Type:
 		
-	<div ng-controller="addFormcontroller">	
-	    <form name"addForm" class="css-clientform"  novalidate >
-	      Name: <input type="text" ng-model="user.name" required/><br />
-					
-	      Description: <input type="text" ng-model="user.description" required/><br />
-		  
-		  Type: <input type="radio" ng-model="user.type" value="TRADING" required/>Trading
-		        <input type="radio" ng-model="user.type" value="IA" required/>IA<br />
-				
-		  Default: <input type="checkbox" ng-model="user.isDefault" 
-		  					ng-true-value="'Y'" ng-false-value="'N'"> <br/>
-		  	
-	      <input type="button" ng-click="reset()" value="cancel" />
-		  
-	      <input type="submit" ng-click="update(user)" value="create"/>
-					
-		  <div>addForm is {{addForm.$valid}}</div>
-	    </form>
-	    <pre>form = {{user | json}}</pre>
-	    <pre>master = {{master | json}}</pre>
+		<select ng-model="newClienttype">
+		  <option value="TRADING" value="TRADING">TRADING</option>
+		  <option value="IA" value="IA">IA</option>
+		</select>
+		
+	</label>
 	
-	</div>		
+	<label>Default:
+		<input type="checkbox" ng-model="newClientisDefault" ng-true-value="'Y'" ng-false-value="'N'" >
+	</label>
 	
-   <div class="btn-group" role="group">
-     <button type="button" class="btn btn-default"><a href="index.html" target="_blank">Return to client list</a></button>
-   </div>
-	
-	
-      
-    </div>
-    <!--end container-->
-	
-    <footer class="footer">
-      <div class="container">
-        <p class="text-muted">BNY Mellon Prototype 2015</p>
-      </div>
-    </footer>
+	<label>
+		<input type="button" ng-click="newReset()" value="cancel" />	
+	</label>
+		
+	<label>
+		<input type="submit" ng-click="confirm(myForm,newClient)" value="create"
+			ng-disabled="myForm.newClientname.$dirty && myForm.newClientname.$invalid ||  
+			myForm.newClientdescription.$dirty && myForm.newClientdescription.$invalid">
+	</label>
 
-
-    <!-- core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-	<script src="js/angular.min.js"></script>
-	<script src="app/bny-mellon-app.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-
-
-</html>
+	</form>
+	

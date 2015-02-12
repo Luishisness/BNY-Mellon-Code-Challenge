@@ -9,17 +9,26 @@
   .search{
   	
 	  float:right;
-	  padding: 0px;
+	  padding: 10px;
 	 
   }
   
   form{
   	
 	  float:left;
-	  padding: 50px;
+	  padding: 10px;
+	  background-color:#a79668;
   }
   
   label{
   	
 	padding: 10px;
   }
+  
+  h3{
+  	
+	  border:none;
+	  background-color:#a79668;
+  }
+  
+.table-responsive { width: 100%; overflow-y: hidden; overflow-x: scroll; -ms-overflow-style: -ms-autohiding-scrollbar; -webkit-overflow-scrolling: touch; } 
